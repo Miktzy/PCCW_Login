@@ -1,0 +1,36 @@
+package PCCW;
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.webDriver;
+
+public class PCCW {
+  
+  public static void main(String[] args){
+    
+    System.setProperty("webDriver.ChromeDriver");
+    
+    //initialize chrome driver
+    webDriver driver = new ChromeDriver();
+    
+    driver.get("https://practicetestautomation.com/practice-test-login");
+    driver.manage().window().maximize();
+    
+    WebElement usernameField = driver.findElement(By.id("username"));
+    WebElement passwordField = driver.findElement(By.id("password"));
+    WebElement submitButton = driver.findElement(By.id("submit"));
+
+    //Login with valid credentials
+    usernameField.sendKeys("student");
+    passwordField.sendKeys("Password123");
+    submitButton.click();
+    
+    // Example assertion - Verify successful login
+    WebElement welcomeMessage = driver.findElement(By.id("welcome-message"));
+    Assert.assertTrue(welcomeMessage.getText().contains("Welcome"), "Login was unsuccessful");
+    
+    //Verify that the user has logged in successful
+    WebElement welcomeMessage = driver.findElement(By.xpath("//*[@id="loop-container"]/div/article/div[1]/h1"));
+    Assert.assertTrue(welcomeMessage.getText().contains("Logged In Successfully"), "Login was unsuccessful");
+    
+  }
+}

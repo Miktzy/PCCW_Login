@@ -24,10 +24,6 @@ public class PCCW {
     passwordField.sendKeys("Password123");
     submitButton.click();
     
-    // Example assertion - Verify successful login
-    WebElement welcomeMessage = driver.findElement(By.id("welcome-message"));
-    Assert.assertTrue(welcomeMessage.getText().contains("Welcome"), "Login was unsuccessful");
-    
     //Verify that the user has logged in successful
     WebElement welcomeMessage = driver.findElement(By.xpath("//*[@id="loop-container"]/div/article/div[1]/h1"));
     Assert.assertTrue(welcomeMessage.getText().contains("Logged In Successfully"), "Login was unsuccessful");
